@@ -60,3 +60,20 @@ const pickLastN = n => {
   return fnPickLast([1, 2, 3, 4, 5]);
 };
 console.log(pickLastN(5));
+
+
+// flatten array of any depth
+// [1, 2, [3, 4]]
+
+const flattenArr = arr => {
+  const fnFlattenArr = ([head, ...tail], acc) => {
+    if (head === undefined || head === null) return acc;
+    if (Array.isArray(head)) {
+      return fnFlattenArr(tail, [...acc, ...head]);
+    }
+    return fnFlattenArr(tail, [...acc, head]);
+  }
+
+  return fnFlattenArr(arr, []);
+}
+console.log(flattenArr([1, [3, 4], 2]));
