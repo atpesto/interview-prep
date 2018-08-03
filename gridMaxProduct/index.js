@@ -105,27 +105,6 @@ const calcBottom = (rows, rowIndex, colIndex) => {
   return product;
 };
 
-const calcBottomLeft = (rows, rowIndex, colIndex) => {
-  let limit = 4;
-  let product = 1;
-
-  let rowMaxLength = rows.length;
-
-  let row = rowIndex + 1;
-  let col = colIndex - 1;
-
-  while ((row < rowMaxLength) && (col >= 0) && (limit > 0)) {
-    const targetRow = rows[row];
-    const targetCol = targetRow[col];
-    product *= targetCol;
-
-    row += 1;
-    limit -= 1;
-  }
-
-  return product;
-};
-
 const calcLeft = (rows, rowIndex, colIndex) => {
   let limit = 4;
   let product = 1;
@@ -139,29 +118,6 @@ const calcLeft = (rows, rowIndex, colIndex) => {
 
     product *= targetCol;
 
-    col -= 1;
-    limit -= 1;
-  }
-
-  return product;
-};
-
-const calcTopLeft = (rows, rowIndex, colIndex) => {
-  let limit = 4;
-  let product = 1;
-
-  let colMaxLength = rows[0].length;
-
-  let row = rowIndex - 1;
-  let col = colIndex - 1;
-
-  while ((row >= 0) && (col >= 0) && (limit > 0)) {
-    const targetRow = rows[row];
-    const targetCol = targetRow[col];
-
-    product *= targetCol;
-
-    row -= 1;
     col -= 1;
     limit -= 1;
   }
@@ -204,16 +160,10 @@ fs.readFile('./matrix.txt', (err, data) => {
       // get bottom
       const bottom = calcBottom(rows, rowIndex, colIndex);
 
-      // get bottom-left
-      const bottomLeft = calcBottomLeft(rows, rowIndex, colIndex);
-
       // get left
       const left = calcLeft(rows, rowIndex, colIndex);
 
-      // get top-left
-      const topLeft = calcTopLeft(rows, rowIndex, colIndex);
-
-      const tempMax = Math.max(top, topRight, right, bottomRight, bottom, bottomLeft, left, topLeft);
+      const tempMax = Math.max(top, topRight, right, bottomRight, bottom, left);
       if (tempMax > max) {
         max = tempMax;
       }
