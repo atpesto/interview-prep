@@ -71,7 +71,7 @@ const deleteRow = (db, table, where) => {
 
 // console.log(deleteRow('testDB', 'testTable', {
 //   field: 'field1',
-//   value: 'value1',
+//   value: 'value3',
 // }));
 
 
@@ -129,3 +129,12 @@ const selectJoin = (db, tableData, joinTableData) => {
 //     }
 //   )
 // );
+
+
+module.exports = {
+  select,
+  deleteRow,
+  insertRow,
+  update,
+  selectJoin,
+};
