@@ -87,6 +87,8 @@ const calcBottomRight = (rows, rowIndex, colIndex) => {
   return product;
 };
 
+// diagonal
+
 fs.readFile('./matrix.txt', (err, data) => {
   if (err) {
     throw err;
