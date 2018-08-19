@@ -81,7 +81,40 @@ class LinkedList {
       }
       currentNode = currentNode.next;
     }
+  }
 
+  _isArrayPalindrome(array) {
+    let headIndex = 0;
+    let tailIndex = ((array.length) - 1);
+
+    while (headIndex < tailIndex) {
+      const headChar = array[headIndex];
+      const tailChar = array[tailIndex];
+
+      if (headChar !== tailChar) {
+        return false;
+      }
+      headIndex += 1;
+      tailIndex -= 1;
+    }
+    return true;
+  }
+
+  isPalindrome() {
+    const headNode = this.head;
+
+    let currentNode = headNode;
+    let array = [];
+    while (currentNode !== null) {
+      array.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+
+    const isPalindrome = this._isArrayPalindrome(array);
+    if (isPalindrome === true) {
+      return true;
+    }
+    return false;
   }
 }
 
@@ -105,4 +138,5 @@ if (nodeAt2 === null) {
 }
 customLinkedList.removeKFromList(0);
 customLinkedList.traverseList();
+customLinkedList.isPalindrome();
 
